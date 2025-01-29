@@ -1,0 +1,14 @@
+.music-page {
+    background-image: url("assets/music.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.WhiteText{
+    color:rgb(255, 255, 255)
+}
+
+.BlueText{
+    color:aqua
+}
