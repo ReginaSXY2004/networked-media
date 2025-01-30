@@ -1,4 +1,13 @@
+.home-page {
+    text-align: center;
+    background-image: url("assets/index-bg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 .music-page {
+    text-align: center;
     background-image: url("assets/music.jpg");
     background-size: cover;
     background-position: center;
@@ -11,4 +20,54 @@
 
 .BlueText{
     color:aqua
+}
+
+.YellowText{
+    color:yellow
+}
+
+.budgies-page img {
+    width: 600px;
+    height: auto;
+    display: block;
+    margin: 10px auto;
+}
+
+.sleep-schedule {
+    text-align: center;
+    background-image: url("assets/sleep.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.sleep-schedule h2:nth-of-type(1) { transform: rotate(-10deg); }
+.sleep-schedule h2:nth-of-type(2) { transform: rotate(10deg); }
+.sleep-schedule h2:nth-of-type(3) { transform: rotate(-10deg); }
+
+.budgies-page{
+    text-align: center;
+}
+
+.fishing-page{
+    text-align: center;
+}
+
+.travel-page{
+    text-align: center;
+}
+.plant-img {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px; 
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.plant-img img {
+    width: 100%; 
+    height: auto;
+}
+.skating-page{
+    text-align: center;
 }
