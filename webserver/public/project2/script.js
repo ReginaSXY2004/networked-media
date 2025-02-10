@@ -6,7 +6,7 @@ let hrs = document.getElementById("hrs");
 let min = document.getElementById("min");
 let toggleBtn = document.getElementById("toggle-btn");
 let isMorse = false;
-let isPlaying = false;  // 添加一个标志位，确保音效按顺序播放
+let isPlaying = false; 
 
 const morseMap = {
     "0": "-----",
@@ -21,17 +21,16 @@ const morseMap = {
     "9": "----."
 };
 
-// 播放摩斯电码声音
+// Play pig sound
 function playMorseCode(code) {
     let index = 0;
 
-    // 播放下一个符号
     function playNextSymbol() {
-        if (index < code.length && !isPlaying) {
+        // only pig sound if in morse mode
+        if (index < code.length && !isPlaying && toggleBtn.innerText === "Digital Mode") {
             const symbol = code[index];
             let sound = null;
 
-            // 根据符号选择播放短音或长音
             if (symbol === '.') {
                 sound = shortSound;
             } else if (symbol === '-') {
@@ -39,23 +38,21 @@ function playMorseCode(code) {
             }
 
             if (sound) {
-                isPlaying = true; // 标记播放中
+                isPlaying = true; 
                 sound.play();
                 
                 sound.onended = function() {
-                    isPlaying = false; // 播放完后，标记播放完毕
+                    isPlaying = false;
                     index++;
-                    playNextSymbol(); // 播放下一个符号
+                    playNextSymbol();
                 };
             }
         }
     }
 
-    // 启动播放
     playNextSymbol();
 }
 
-// 更新时钟
 function updateTime() {
     let currentTime = new Date();
     let hours = String(currentTime.getHours()).padStart(2, "0");
@@ -68,7 +65,6 @@ function updateTime() {
         min.classList.add("morse");
         clock.classList.add("morse");
 
-        // 播放摩斯电码的声音
         let morseCode = morseMap[hours.charAt(0)] + morseMap[hours.charAt(1)] + morseMap[minutes.charAt(0)] + morseMap[minutes.charAt(1)];
         playMorseCode(morseCode);
     } else {
@@ -85,6 +81,6 @@ setInterval(updateTime, 1000);
 // button to switch mode
 toggleBtn.addEventListener("click", function () {
     isMorse = !isMorse;  
-    toggleBtn.innerText = isMorse ? "Digital Mode" : "Morse Mode";  // 2 Modes
+    toggleBtn.innerText = isMorse ? "Digital Mode" : "Morse Mode";  // switch mode
     updateTime();
 });

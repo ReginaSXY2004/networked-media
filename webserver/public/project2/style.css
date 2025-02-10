@@ -28,7 +28,7 @@
     border-radius: 10px;
     display: flex;
     align-items: center;
-    justify-content: center;  /* 默认为居中对齐 */
+    justify-content: center; 
     backdrop-filter: blur(40px);
 }
 
@@ -56,18 +56,18 @@
     z-index: -1;
 }
 .clock.morse {
-    justify-content: space-evenly;  /* 使用均匀分布 */
+    justify-content: space-evenly; 
 }
 .clock span {
-    font-size: 40px;  /* 缩小字体 */
+    font-size: 40px;
     display: inline-block;
     text-align: center;
     position: relative;
-    padding: 5px;  /* 增加间距，防止重叠 */
+    padding: 5px;
 }
 
 .clock span.morse {
-    font-size: 30px; /* 如果摩丝电码显示字体要小一点 */
+    font-size: 30px;
 }
 
 .clock span::after{
@@ -79,7 +79,7 @@
 }
 .clock span.separator {
     font-size: 40px;
-    margin: 0 15px;  /* 给 : 适当的左右间距 */
+    margin: 0 15px;
 }
 #hrs::after{
     content: 'HOURS'
@@ -106,11 +106,11 @@
 }
 
 .morse {
-    font-size: 35px; /* 缩小字体，确保能放进一行 */
-    letter-spacing: 5px; /* 让摩斯码字符之间稍微分开 */
-    word-spacing: 15px; /* 让两位数字之间稍微分开 */
-    display: flex; /* 让所有字符在一行内排列 */
-    justify-content: center; /* 居中对齐 */
-    white-space: nowrap; /* 不自动换行 */
+    font-size: 35px;
+    letter-spacing: 5px; 
+    word-spacing: 15px;
+    display: flex;
+    justify-content: center; 
+    white-space: nowrap; 
 }
 
