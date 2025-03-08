@@ -1,0 +1,48 @@
+body{
+    background-color: lightgreen;
+    margin: 0;
+    height: 150vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+.nav-bar{
+    background-color: lightblue;
+    height: 200px;
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    /* position: sticky; */
+}
+
+.nav-element{
+    background-color: lightpink;
+    height: 100px;
+    width: 100px;
+    /* margin-bottom: 2px; */
+
+    opacity: .5;
+    transition: opacity 1s ease-in, background-color 1s ease-in;
+}
+
+.nav-element:hover{
+    background-color: deeppink;
+    opacity: 1;
+    transition: opacity 1s ease-out, background-color 1s ease-in
+}
+
+.content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: cyan;
+    width: 100%;
+    height: 50px;
+}
