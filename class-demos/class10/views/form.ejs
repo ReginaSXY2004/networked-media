@@ -1,0 +1,10 @@
+<%- include('nav.ejs') %>
+<%- include('static.ejs') %>
+
+<form method="POST" action="/submit" enctype="multipart/form-data">
+    <label for="username">enter your name</label>
+    <input type="text" name="username">
+    <input type="color" name="color">
+    <input type="file" name="img">
+    <input type="submit" name="sb" value="send message">
+</form>

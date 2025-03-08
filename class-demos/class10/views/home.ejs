@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>class 11 🍥</title>
+    <%- include('static.ejs') %>
+
+  </head>
+  <body>
+    <%- include('nav.ejs') %>
+    <% for(let i = 0; i < allposts.length; i++){ %>
+    <div class="message-container">
+      <div class="color">
+        <%= allposts[i].color %>
+        <div class="username"><%= allposts[i].user %></div>
+        <!-- check if imgsrc exists on object -->
+        <% if(allposts[i].imgSrc){ %>
+          <div class="image"><img src="<%=allposts[i].imgSrc %>"></div>
+        <% } %>
+      </div>
+    </div>
+    <% } %>
+  </body>
+</html>
