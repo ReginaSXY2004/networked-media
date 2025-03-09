@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Salmon Migration</title>
-    <link rel="stylesheet" href="/styles/home.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Salmon Migration</title>
+        <link rel="stylesheet" href="/styles/home.css">
+    </head>
 <body>
     <nav>
         <a href="/home">Home</a>
@@ -26,26 +26,22 @@
         </p>
     </section>
 
-    <section id="report">
-        <h2>Report</h2>
-        <div class="report-container">
-            <div class="report-image">
-                <img src="/images/<%= reportImage %>" alt="Salmon image">
-            </div>
-            <div class="report-text">
-                <p>
-                    <%= reportText %>
-                </p>
-            </div>
-        </div>
 
-        <!-- 用户提交报告的表单 -->
-        <h3>Submit Your Report</h3>
-        <form action="/submit-report" method="POST">
-            <textarea name="reportText" placeholder="Write your report here..." rows="5" cols="50"></textarea>
-            <br>
-            <button type="submit">Submit</button>
-        </form>
-    </section>
+    <h3>All Reports</h3>
+    <% userReports.forEach(report => { %>
+        <div class="user-report">
+            <img src="/uploads/<%= report.image %>" alt="User Report Image" style="max-width: 500px;">
+            <p><%= report.text %></p>
+        </div>
+    <% }); %>
+    <h3>Submit Your Report</h3>
+    <form action="/submit-report" method="POST">
+        <textarea name="reportText" placeholder="Write your report here..." rows="5" cols="50"></textarea>
+        <br>
+        <label for="reportImage">Upload Image</label>
+        <input type="file" name="reportImage">
+        <br>
+        <button type="submit">Submit Report</button>
+    </form>
 </body>
 </html>
