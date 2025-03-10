@@ -28,25 +28,35 @@
     </section>
 
 
-    <h3>All Reports</h3>
-    <% userReports.forEach(report => { %>
-        <div class="user-report">
-            <img src="/uploads/<%= report.image %>" alt="User Report Image" style="max-width: 500px;">
-            <p><%= report.text %></p>
-        </div>
-    <% }); %>
-    <h3>Submit Your Report</h3>
-    <form action="/submit-salmon-report" method="POST">
-        <textarea name="reportText" placeholder="Write your report here..." rows="5" cols="50"></textarea>
+    <h2>All Salmon Sightings Reports</h2>
+    <p>People have spotted and documented salmon in various areas of the Columbia River. Check out what others have discovered!</p>
+    
+    <% if (userReports.length > 0) { %>
+        <% userReports.forEach(report => { %>
+            <div class="user-report">
+                <img src="/uploads/<%= report.image %>" alt="User Report Image" style="max-width: 500px;">
+                <p><%= report.text %></p>
+            </div>
+        <% }); %>
+    <% } else { %>
+        <p>No salmon reports yet — be the first to share your discovery!</p>
+    <% } %>
+    
+    <h2>Spotted a Salmon? Submit Your Report!</h2>
+    <p>If you've seen a salmon in the Columbia River or noticed something interesting, upload a picture and describe your observation to help others learn more!</p>
+    
+    <form action="/submit-salmon-report" method="POST" enctype="multipart/form-data">
+        <textarea name="reportText" placeholder="Describe the salmon you caught..." rows="5" cols="50"></textarea>
         <br>
         <label for="reportImage">Upload Image</label>
         <input type="file" name="reportImage">
         <br>
         <button type="submit">Submit Report</button>
     </form>
+    
     <footer>
         <p>Want to learn more? Contact Regina Sun, <a href="mailto:xs2316@nyu.edu">xs2316@nyu.edu</a></p>
-        <p><a href="<%= aboutUsLink %>" target="_blank">About Us</a> | <a href="<%= contactLink %>" target="_blank">Contact</a></p>
+        <p><a href="<%= aboutUsLink %>" target="_blank">About Us</a></p>
     </footer>
     
 </body>

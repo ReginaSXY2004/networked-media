@@ -4,6 +4,7 @@ const multer = require('multer');
 const bodyParser = require('body-parser');
 const path = require('path');
 const port = 3000;
+const upload = multer({ dest: 'public/uploads/' });
 
 
 app.set('view engine', 'ejs');
@@ -14,6 +15,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 let salmonReports = [];
 
+// salmon stories on community page
+let stories = [
+    { title: "The Journey Upstream", description: "A salmon's struggle against the currents to spawn."},
+    { title: "River's Echo", description: "A poetic tale of salmon migration through the seasons." }
+];
 
 
 app.get('/', (req, res) => {
@@ -37,15 +43,15 @@ function renderHomePage(req, res) {
 }
 
 // submit salmon repoty
-app.post('/submit-salmon-report', (req, res) => {
-    const reportText = req.body.reportText; 
-    const reportImage = req.body.reportImage || 'default.jpg';
-    
-    // save
+app.post('/submit-salmon-report', upload.single('reportImage'), (req, res) => {
+    const reportText = req.body.reportText;
+    const reportImage = req.file ? req.file.filename : 'default.jpg';
+
     salmonReports.push({ text: reportText, image: reportImage });
 
     res.redirect('/');
 });
+
 
 
 // Migration
@@ -64,7 +70,6 @@ app.post('/submit-pollution-report', (req, res) => {
 });
 
 });
-
 
 
 
