@@ -4,20 +4,16 @@ const multer = require('multer');
 const bodyParser = require('body-parser');
 const path = require('path');
 const port = 3000;
-const cors = require('cors');
-
 
 // 设置 EJS 视图引擎
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
-app.set('views', './views');
-app.use(cors());
 // 解析 POST 请求中的数据
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // 存储用户提交的报告文本和图片
 let salmonReports = []; // 存储三文鱼报告
-let pollutionReports = []; // 存储污染报告
+
 
 // 根路径，直接显示主页
 app.get('/', (req, res) => {
@@ -35,20 +31,21 @@ function renderHomePage(req, res) {
     const reportText = salmonReports[salmonReports.length - 1]?.text || 'No report yet.';
     console.log("Video ID:", videoId);
     // 渲染 home.ejs
-    res.render('home', { videoId, backgroundStory, reportImage, reportText, userReports: salmonReports });
+    res.render('home', { videoId, backgroundStory, reportImage, reportText, userReports: salmonReports, aboutUsLink: 'https://example.com/about-us',
+        contactLink: 'https://example.com/contact'});
 
 }
 
-// 路由：接收用户提交的三文鱼报告
+// 路由：接收用户提交的报告
 app.post('/submit-salmon-report', (req, res) => {
     const reportText = req.body.reportText; // 获取用户输入的文本
     const reportImage = req.body.reportImage || 'default.jpg'; // 获取用户上传的图像（假设是表单字段）
     
-    // 将三文鱼报告文本和图像存储在数组中
+    // 将报告文本和图像存储在数组中
     salmonReports.push({ text: reportText, image: reportImage });
     
-    // 重定向回主页，显示最新的三文鱼报告
-    res.redirect('/home');
+    // 重定向回主页，显示最新的用户生成内容
+    res.redirect('/');
 });
 
 
@@ -58,28 +55,23 @@ app.get('/migration', (req, res) => {
         upstreamContent: "The upstream journey is arduous, with salmon leaping up waterfalls to reach their spawning grounds.",
         midstreamContent: "In the midstream, salmon face predators and obstacles but continue their migration with resilience.",
         downstreamContent: "Returning downstream, young salmon navigate currents and human-made structures to reach the ocean.",
-        mapPlaceholder: '<img src="/images/migration-map.png" alt="Migration Map">',
-        pollutionReports: pollutionReports // 将污染报告传递给视图
+        mapPlaceholder: '<img src="/images/migration-map.png" alt="Migration Map">'
     });
-});
-
 // 路由：接收污染报告
 app.post('/submit-pollution-report', (req, res) => {
-    const { lat, lng, text } = req.body; // 获取地理坐标和污染描述
+    const { lat, lng, text } = req.body;
     console.log(`Pollution report: ${text} at (${lat}, ${lng})`);
-    
-    // 将污染报告存储到污染报告数组中
-    pollutionReports.push({ lat, lng, text });
-
-    // 发送成功的响应
     res.status(200).send({ message: "Report submitted successfully!" });
 });
 
+});
 
 // 启动服务器
 app.listen(port, '0.0.0.0', () => {
     console.log(`服务器运行在: http://178.128.147.116:${port}`);
 });
+
+
 
 
 
