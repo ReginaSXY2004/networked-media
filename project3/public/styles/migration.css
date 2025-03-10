@@ -1,17 +1,16 @@
-/* 通用样式 */
+
 body {
-    margin: 0;
-    font-family: 'Roboto', sans-serif; /* 使用与home页面相同的字体 */
-    background-color: #fbe4bb; /* 浅橙色背景 */
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    background-color: #fbe4bb;
     padding: 20px;
 }
 
-/* 导航栏样式 */
 nav {
     display: flex;
     justify-content: space-around;
+    background: #ff8a60; 
     padding: 10px;
-    background: #ff8a60; /* 三文鱼橙色背景 */
 }
 
 nav a {
@@ -22,7 +21,7 @@ nav a {
 }
 
 nav a:hover {
-    background: #ff622a; /* 更深的橙色 */
+    background: #ff622a;
     border-radius: 5px;
 }
 
@@ -82,16 +81,16 @@ nav a:hover {
 }
 
 #map {
-    height: 600px;  /* 设置地图的高度 */
-    width: 100%;    /* 地图宽度占满父容器 */
-    border-radius: 10px;  /* 圆角效果 */
+    height: 600px; 
+    width: 100%;
+    border-radius: 10px;
 }
 
 h2 {
-    font-family: 'Roboto', sans-serif; /* 使用现代字体 */
+    font-family: 'Roboto', sans-serif;
     font-size: 1.8rem;
     color: #333;
-    text-align: center;  /* 标题居中 */
+    text-align: center; 
     margin-bottom: 20px;
 }
 
@@ -110,7 +109,7 @@ h2 {
 .legend-color {
     width: 20px;
     height: 20px;
-    border-radius: 50%; /* 圆形标记 */
+    border-radius: 50%; 
 }
 
 .legend-item span {
@@ -119,7 +118,7 @@ h2 {
     color: #333;
 }
 
-/* 响应式布局 */
+
 @media (max-width: 768px) {
     .migration-block {
         flex-direction: column;

@@ -15,12 +15,12 @@ function initMap() {
         }
     });
 
-    // 添加标记点
+
     addMarker(map, { lat: 46.5, lng: -123.0 }, "Downstream");
     addMarker(map, { lat: 47.0, lng: -120.0 }, "Midstream");
     addMarker(map, { lat: 48.0, lng: -118.0 }, "Upstream");
 
-    // 点击地图上传报告
+    // click to upload pollution report
     map.addListener("click", (event) => {
         const latLng = event.latLng;
         const reportText = prompt("Enter your pollution report:");
