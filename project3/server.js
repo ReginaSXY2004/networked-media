@@ -5,7 +5,9 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const port = 3000;
 const upload = multer({ dest: 'public/uploads/' });
-
+// salmon stories on community page
+// 用于存储故事的数组
+const stories = [];
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -15,11 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 let salmonReports = [];
 
-// salmon stories on community page
-let stories = [
-    { title: "The Journey Upstream", description: "A salmon's struggle against the currents to spawn."},
-    { title: "River's Echo", description: "A poetic tale of salmon migration through the seasons." }
-];
+
 
 
 app.get('/', (req, res) => {
@@ -74,7 +72,17 @@ app.post('/submit-pollution-report', (req, res) => {
 
 
 app.get('/community', (req, res) => {
-    res.render('community');
+    res.render('community', { stories });
+});
+
+// 处理故事提交
+app.post('/submit-story', (req, res) => {
+    const { title, description } = req.body;
+    
+    // 添加新故事到数组
+    stories.push({ title, description });
+
+    res.redirect('/community');
 });
 
 

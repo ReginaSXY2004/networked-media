@@ -12,14 +12,37 @@
         <a href="/migration">Migration Map</a>
         <a href="/community">Community</a>
     </nav>
-
+    
+    <section class="community-intro">
+        <h1>Bring Them Back: Join the Community Effort to Protect Salmon</h1>
+        <p>
+            The Columbia River's salmon are more than just fish — they are symbols of resilience, vital to local ecosystems, Indigenous cultures, and community livelihoods. But their future is uncertain. By sharing your salmon sightings, observations, and experiences, you help build a living archive of the river’s health. Every report brings us closer to understanding salmon migration patterns and strengthening conservation efforts.
+        </p>
+    </section>
+    
     <section class="community-section">
-        <h1>Stories with Salmon</h1>
-        
-        <div class="stories-container">
+        <h1>Community Stories</h1>
+        <p>Explore stories from community members about their experiences and efforts in salmon conservation.</p>
 
+        <div class="story-grid">
+            <% stories.forEach(story => { %>
+                <div class="story-card">
+                    <h2><%= story.title %></h2>
+                    <p><%= story.description %></p>
+                </div>
+            <% }); %>
         </div>
 
+        <h2>Submit Your Story</h2>
+        <form action="/submit-story" method="POST">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" rows="4" required></textarea>
+
+            <button type="submit">Submit Story</button>
+        </form>
     </section>
 </body>
 </html>
