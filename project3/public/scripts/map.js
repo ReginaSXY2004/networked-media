@@ -1,54 +1,60 @@
+let map;
+
 function initMap() {
-    const columbiaRiverBounds = {
-        north: 49.0,
-        south: 45.0,
-        west: -124.0,
-        east: -116.0
-    };
-
-    const map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 46.5, lng: -119.5 },
+    map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: 46.0, lng: -120.5 },
         zoom: 7,
-        restriction: {
-            latLngBounds: columbiaRiverBounds,
-            strictBounds: false
-        }
     });
 
-
-    addMarker(map, { lat: 46.5, lng: -123.0 }, "Downstream");
-    addMarker(map, { lat: 47.0, lng: -120.0 }, "Midstream");
-    addMarker(map, { lat: 48.0, lng: -118.0 }, "Upstream");
-
-    // click to upload pollution report
     map.addListener("click", (event) => {
-        const latLng = event.latLng;
-        const reportText = prompt("Enter your pollution report:");
-
-        if (reportText) {
-            addMarker(map, latLng, 'yellow');
-            saveReportToServer(latLng, reportText);
-        }
+        const lat = event.latLng.lat().toFixed(6);
+        const lng = event.latLng.lng().toFixed(6);
+        
+        // 填充表单
+        document.getElementById("lat").value = lat;
+        document.getElementById("lng").value = lng;
+        
+        // 显示弹窗
+        const formPopup = document.getElementById("form-popup");
+        formPopup.style.display = "block";
     });
-}
 
-function addMarker(map, position, title) {
-    new google.maps.Marker({
-        position,
-        map,
-        title
+    const form = document.getElementById("pollution-form");
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        
+        const formData = new FormData(form);
+        const response = await fetch('/submit-pollution-report', {
+            method: 'POST',
+            body: formData,
+        });
+
+        const result = await response.json();
+        alert(result.message);
+        
+        // 在地图上添加标记
+        const marker = new google.maps.Marker({
+            position: { lat: parseFloat(result.data.lat), lng: parseFloat(result.data.lng) },
+            map: map,
+        });
+        
+        const contentString = `
+            <div>
+                <h3>${result.data.pollutionType}</h3>
+                ${result.data.imageUrl ? `<img src="${result.data.imageUrl}" alt="Pollution" style="width:100px;">` : ''}
+            </div>
+        `;
+        
+        const infowindow = new google.maps.InfoWindow({
+            content: contentString
+        });
+        
+        marker.addListener("click", () => {
+            infowindow.open(map, marker);
+        });
+        
+        form.reset();
+        document.getElementById("form-popup").style.display = "none";
     });
-}
-
-function saveReportToServer(latLng, reportText) {
-    fetch("/submit-report", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ lat: latLng.lat(), lng: latLng.lng(), text: reportText })
-    }).then(response => response.json())
-      .then(data => alert(data.message))
-      .catch(error => console.error("Error:", error));
 }
 window.initMap = initMap;

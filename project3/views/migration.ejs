@@ -56,6 +56,29 @@
         </div>
         <div id="map"></div>
     </section>
+    <section id="form-popup" style="display: none;">
+        <h2>Report Pollution</h2>
+        <form id="pollution-form" enctype="multipart/form-data">
+            <label for="lat">Latitude:</label>
+            <input type="text" id="lat" name="lat" readonly required>
+    
+            <label for="lng">Longitude:</label>
+            <input type="text" id="lng" name="lng" readonly required>
+    
+            <label for="pollutionType">Pollution Type:</label>
+            <select id="pollutionType" name="pollutionType">
+                <option value="Algal Bloom">Algal Bloom</option>
+                <option value="Oil Spill">Oil Spill</option>
+                <option value="Plastic Waste">Plastic Waste</option>
+                <option value="Dead Fish">Dead Fish</option>
+            </select>
+    
+            <label for="image">Upload Image:</label>
+            <input type="file" id="image" name="image" accept="image/*">
+    
+            <button type="submit">Submit Report</button>
+        </form>
+    </section>
     
 </body>
 </html>

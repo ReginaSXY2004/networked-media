@@ -60,15 +60,18 @@ app.get('/migration', (req, res) => {
         downstreamContent: "Returning downstream, young salmon navigate currents and human-made structures to reach the ocean.",
         mapPlaceholder: '<img src="/images/migration-map.png" alt="Migration Map">'
     });
-// submit pollution report on the map
-app.post('/submit-pollution-report', (req, res) => {
-    const { lat, lng, text } = req.body;
-    console.log(`Pollution report: ${text} at (${lat}, ${lng})`);
-    res.status(200).send({ message: "Report submitted successfully!" });
 });
 
-});
+// 处理污染报告提交
+app.post('/submit-pollution-report', upload.single('image'), (req, res) => {
+    const { lat, lng, pollutionType } = req.body;
+    const imageUrl = req.file ? `/uploads/${req.file.filename}` : '';
 
+    const pollutionPoint = { lat, lng, pollutionType, imageUrl };
+    console.log('污染报告:', pollutionPoint);
+
+    res.status(200).send({ message: "报告提交成功！", data: pollutionPoint });
+});
 
 
 app.get('/community', (req, res) => {
