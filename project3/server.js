@@ -35,8 +35,7 @@ function renderHomePage(req, res) {
     const reportText = salmonReports[salmonReports.length - 1]?.text || 'No report yet.';
     console.log("Video ID:", videoId);
 
-    res.render('home', { videoId, backgroundStory, reportImage, reportText, userReports: salmonReports, aboutUsLink: 'https://example.com/about-us',
-        contactLink: 'https://example.com/contact'});
+    res.render('home', { videoId, backgroundStory, reportImage, reportText, userReports: salmonReports, aboutUsLink: '/aboutus',});
 
 }
 
@@ -88,11 +87,9 @@ app.post('/submit-story', (req, res) => {
     res.redirect('/community');
 });
 
-
-
-
-
-
+app.get('/aboutus', (req, res) => {
+    res.render('aboutus');
+});
 
 
 app.listen(port, '0.0.0.0', () => {
