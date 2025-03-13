@@ -6,7 +6,6 @@ const path = require('path');
 const port = 3000;
 const upload = multer({ dest: 'public/uploads/' });
 // salmon stories on community page
-// 用于存储故事的数组
 const stories = [];
 
 app.set('view engine', 'ejs');
@@ -61,15 +60,15 @@ app.get('/migration', (req, res) => {
     });
 });
 
-// 处理污染报告提交
+// submit-pollution-report
 app.post('/submit-pollution-report', upload.single('image'), (req, res) => {
     const { lat, lng, pollutionType } = req.body;
     const imageUrl = req.file ? `/uploads/${req.file.filename}` : '';
 
     const pollutionPoint = { lat, lng, pollutionType, imageUrl };
-    console.log('污染报告:', pollutionPoint);
+    console.log('Pollution report:', pollutionPoint);
 
-    res.status(200).send({ message: "报告提交成功！", data: pollutionPoint });
+    res.status(200).send({ message: "Thanks for your submition.", data: pollutionPoint });
 });
 
 
@@ -86,6 +85,8 @@ app.post('/submit-story', (req, res) => {
 
     res.redirect('/community');
 });
+
+
 
 app.get('/aboutus', (req, res) => {
     res.render('aboutus');

@@ -10,11 +10,11 @@ function initMap() {
         const lat = event.latLng.lat().toFixed(6);
         const lng = event.latLng.lng().toFixed(6);
         
-        // 填充表单
+
         document.getElementById("lat").value = lat;
         document.getElementById("lng").value = lng;
         
-        // 显示弹窗
+
         const formPopup = document.getElementById("form-popup");
         formPopup.style.display = "block";
     });
@@ -32,10 +32,18 @@ function initMap() {
         const result = await response.json();
         alert(result.message);
         
-        // 在地图上添加标记
+        // add pollution marker
         const marker = new google.maps.Marker({
             position: { lat: parseFloat(result.data.lat), lng: parseFloat(result.data.lng) },
             map: map,
+            icon: {
+                path: google.maps.SymbolPath.CIRCLE,
+                scale: 10,
+                fillColor: 'red',
+                fillOpacity: 1,
+                strokeWeight: 2,
+                strokeColor: 'white'
+            }
         });
         
         const contentString = `

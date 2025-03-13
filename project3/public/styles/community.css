@@ -96,7 +96,13 @@ nav a:hover {
     color: #555;
     font-size: 16px;
     line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 5; /* Number of lines to show */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
+
 
 /* Form styling */
 form {
