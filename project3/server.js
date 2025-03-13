@@ -68,7 +68,7 @@ app.post('/submit-pollution-report', upload.single('image'), (req, res) => {
     const pollutionPoint = { lat, lng, pollutionType, imageUrl };
     console.log('Pollution report:', pollutionPoint);
 
-    res.status(200).send({ message: "Thanks for your submition.", data: pollutionPoint });
+    res.status(200).send({ message: "Thanks for your submission.", data: pollutionPoint });
 });
 
 
@@ -93,7 +93,7 @@ app.get('/aboutus', (req, res) => {
 });
 
 
-app.listen(port, '0.0.0.0', () => {
+app.listen(port,  () => {
     console.log(`server alive at: http://178.128.147.116:${port}`);
 });
 
