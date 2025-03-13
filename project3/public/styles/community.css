@@ -34,13 +34,17 @@ nav a:hover {
 .community-intro {
     text-align: center;
     padding: 20px;
-    background-color: #f0f9ff;
+    background-color: #e0f2fa;
     border-radius: 10px;
     margin-bottom: 20px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
 }
 
 .community-intro h1 {
-    color: #0077b6;
+    color: #333;
     font-size: 28px;
 }
 
@@ -60,10 +64,10 @@ nav a:hover {
 .community-section h1,
 .community-section h2 {
     text-align: center;
-    color: #0077b6;
+    color: #333;
 }
 
-/* Story grid layout */
+/* Story grid */
 .story-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -88,7 +92,7 @@ nav a:hover {
 
 .story-card h2 {
     margin: 10px 0;
-    color: #0077b6;
+    color: #333;
     font-size: 22px;
 }
 
@@ -97,19 +101,18 @@ nav a:hover {
     font-size: 16px;
     line-height: 1.5;
     display: -webkit-box;
-    -webkit-line-clamp: 5; /* Number of lines to show */
+    -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
 
-/* Form styling */
 form {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    background: #e0f7fa;
+    background: #e0f2fa;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -118,7 +121,7 @@ form {
 
 form label {
     font-weight: bold;
-    color: #0077b6;
+    color: rgb(64, 114, 215);
 }
 
 form input,
@@ -131,12 +134,12 @@ form button {
 }
 
 form button {
-    background-color: #0077b6;
+    background: rgb(111, 147, 221);
     color: white;
     cursor: pointer;
     font-weight: bold;
 }
 
 form button:hover {
-    background-color: #005f8e;
+    background: rgb(64, 114, 215);
 }

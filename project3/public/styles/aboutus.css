@@ -5,7 +5,7 @@ body {
     background-color: #fbe4bb; 
     padding: 20px;
 }
-/* Position the "Back to Home" link in the top-left corner */
+/* back button */
 .back-to-home {
     position: absolute;
     top: 20px;
@@ -35,9 +35,9 @@ body {
 }
 .team-member img {
     width: 100%;
-    aspect-ratio: 1 / 1; /* 保证图片是正方形 */
-    object-fit: cover; /* 图片填充整个区域，裁剪溢出的部分 */
-    border-radius: 50%; /* 圆形头像 */
+    aspect-ratio: 1 / 1; 
+    object-fit: cover; 
+    border-radius: 50%;
 }
 
 

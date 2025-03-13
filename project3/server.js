@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const port = 3000;
 const upload = multer({ dest: 'public/uploads/' });
-// salmon stories on community page
+
 const stories = [];
 
 app.set('view engine', 'ejs');
@@ -38,7 +38,7 @@ function renderHomePage(req, res) {
 
 }
 
-// submit salmon repoty
+// submit salmon report
 app.post('/submit-salmon-report', upload.single('reportImage'), (req, res) => {
     const reportText = req.body.reportText;
     const reportImage = req.file ? req.file.filename : 'default.jpg';
@@ -53,9 +53,9 @@ app.post('/submit-salmon-report', upload.single('reportImage'), (req, res) => {
 // Migration
 app.get('/migration', (req, res) => {
     res.render('migration', {
-        upstreamContent: "The upstream journey is arduous, with salmon leaping up waterfalls to reach their spawning grounds.",
+        upstreamContent: "When mature, salmon embark on their return to their natal rivers to spawn. Using their keen sense of smell to detect the unique chemical signature of their birthplace, they navigate back upstream, leaping over rapids and dams, enduring physical exhaustion, and often sustaining injuries. This final journey is fueled by their stored energy, as they cease feeding once they re-enter freshwater. After spawning, most salmon species complete their life cycle, enriching the river ecosystem with nutrients as their bodies decompose.",
         midstreamContent: "In the midstream, salmon face predators and obstacles but continue their migration with resilience.",
-        downstreamContent: "Returning downstream, young salmon navigate currents and human-made structures to reach the ocean.",
+        downstreamContent: "Born in freshwater headwaters, young salmon, known as fry, gradually grow into smolts. They begin their downstream journey toward the ocean, adapting to the changing environment as they transition from freshwater to saltwater. Along the way, they rely on natural currents and instinct to navigate through rivers and estuaries, facing threats like predators and human-made barriers.",
         mapPlaceholder: '<img src="/images/migration-map.png" alt="Migration Map">'
     });
 });
@@ -76,11 +76,11 @@ app.get('/community', (req, res) => {
     res.render('community', { stories });
 });
 
-// 处理故事提交
+// submit storys on community page
 app.post('/submit-story', (req, res) => {
     const { title, description } = req.body;
     
-    // 添加新故事到数组
+
     stories.push({ title, description });
 
     res.redirect('/community');

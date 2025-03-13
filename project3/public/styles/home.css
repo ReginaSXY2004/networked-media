@@ -76,7 +76,7 @@ nav a:hover {
     color: #333;
 }
 
-/* Report */
+/* salmon-Report */
 form {
     display: flex;
     flex-direction: column;
@@ -134,6 +134,7 @@ button:hover {
 
 
 footer {
+    display:flex;
 
     color: black;
     padding: 20px;
@@ -159,4 +160,22 @@ footer a {
 
 footer a:hover {
     color: #ff622a; 
+}
+
+.footer-decor {
+    width: 120px; 
+    height: auto;
+}
+
+.footer-content {
+    text-align: center;
+    flex-grow: 1;
+}
+
+.footer-decor.left {
+    margin-right: 20px;
+}
+
+.footer-decor.right {
+    margin-left: 20px;
 }
