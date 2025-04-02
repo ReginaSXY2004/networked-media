@@ -23,10 +23,42 @@ async function getHarryPotterSpell() {
         const spells = await response.json();
         const randomSpell = spells[Math.floor(Math.random() * spells.length)];
         
-        return `${randomSpell.name}: ${randomSpell.description}`;
+        return `Spell name: ${randomSpell.name}\nSpell description: ${randomSpell.description}`;
     } catch (error) {
         console.error("Failed to fetch Harry Potter spell:", error);
         return "The magic is fading...";
+    }
+}
+
+// get character info from HP-API
+async function getHarryPotterCharacterInfo(characterName) {
+    try {
+        const response = await fetch(`https://hp-api.onrender.com/api/characters?name=${characterName}`);
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+        
+        const characters = await response.json();
+        if (characters.length > 0) {
+            const character = characters[0];  
+            
+            return `
+                Name: ${character.name}
+                Alternate Names: ${character.alternate_names.join(", ")}
+                Species: ${character.species}
+                Gender: ${character.gender}
+                House: ${character.house}
+                Date of Birth: ${character.dateOfBirth}
+                Ancestry: ${character.ancestry}
+                Patronus: ${character.patronus}
+                Actor: ${character.actor}
+                Alive: ${character.alive ? "Yes" : "No"}
+                Image: ${character.image}
+            `;
+        } else {
+            return `Character "${characterName}" 404.`;
+        }
+    } catch (error) {
+        console.error("Failed to fetch character information:", error);
+        return "Could not fetch character information.";
     }
 }
 
@@ -34,39 +66,46 @@ async function getHarryPotterSpell() {
 async function makeStatus() {
     const spell = await getHarryPotterSpell();
     const status = await masto.v1.statuses.create({
-        status: `Learn your spell: ${spell} 🪄🪄🪄 
+        status: `${spell} 🪄🪄🪄 
         \nMay the magic be with you!
         \n#spell #HarryPotterSpell`,
-        visibility: "private"
+        visibility: "public"
     });
 
     console.log("Post successfully created:", status.url);
 }
 
-
-async function replyToMentions() {
+// Reply with character info
+async function reply() {
     const notificationSubscription = await stream.user.notification.subscribe();
-  
+
     for await (let notif of notificationSubscription) {
         let acct = notif.payload.account.acct;
         let replyId = notif.payload.status.id;
 
-        if (notif.payload.type === "mention") {      
-            const roleInfo = "I can teach you Harry Potter spell!";
-            
-            const status = await masto.v1.statuses.create({
-                status: `@${acct} ${roleInfo}`,
-                visibility: "public",
-                in_reply_to_id: replyId,
-            });
+        if (notif.payload.type === "mention") {
+            const message = notif.payload.status.content;
 
-            console.log("Reply successfully created:", status.url);
+            const match = message.match(/(?:character\s)?(\w+\s?\w+)/i);
+
+            if (match) {
+                const characterName = match[1];  // Extracts the character name from the message
+                const roleInfo = await getHarryPotterCharacterInfo(characterName);
+
+                // Reply to the user
+                const status = await masto.v1.statuses.create({
+                    status: `@${acct} Here's the information about ${characterName}: ${roleInfo}`,
+                    visibility: "public",
+                    in_reply_to_id: replyId,
+                });
+
+                console.log("Reply successfully created:", status.url);
+            }
         }
     }
 }
 
-
-
+reply();
 
 // **2h/post**
 setInterval(makeStatus, 7200 * 1000);
