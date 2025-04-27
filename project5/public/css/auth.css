@@ -1,0 +1,106 @@
+@font-face {
+    font-family: 'PlayfairDisplay';
+    src: url('/fonts/PlayfairDisplay-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', serif;
+}
+
+body {
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url('/images/shrine-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+}
+
+.auth-card {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 40px;
+    border-radius: 0;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+h2 {
+    font-family: 'PlayfairDisplay', serif;
+    font-size: 24px;
+    margin-bottom: 10px;
+    letter-spacing: 6px; 
+    font-weight: normal;
+}
+
+.subtitle {
+    font-size: 14px;
+    opacity: 0.7;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #fff;
+    font-size: 16px;
+}
+
+.btn-submit {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    width: auto;
+    min-width: 100px;
+    position: relative;
+}
+
+.btn-submit:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.5);
+}
+
+.switch-auth {
+    margin-top: 30px;
+    font-size: 14px;
+}
+
+.switch-auth a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.error-message {
+    background-color: rgba(255, 0, 0, 0.2);
+    color: #fff;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-left: 3px solid #ff0000;
+    text-align: left;
+}
