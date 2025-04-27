@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shrine Fortunes — Draw a Slip</title>
+    <link rel="stylesheet" href="/css/draw-fortune.css">
+</head>
+<body>
+    <div class="container">
+        <div class="fortune-card">
+            <h2>Draw a Fortune</h2>
+            
+            <div class="fortune-grid">
+                <!-- 7x4 grid -->
+                <% for(let i = 0; i < 28; i++) { %>
+                    <div class="fortune-stick" data-index="<%= i+1 %>">
+                        <form action="/draw-fortune" method="POST">
+                            <input type="hidden" name="stickIndex" value="<%= i+1 %>">
+                            <button type="submit" class="stick-button"></button>
+                        </form>
+                    </div>
+                <% } %>
+            </div>
+            
+            <div class="instructions">
+                <p>Choose a fortune slip and receive your destiny's guidance.</p>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>
