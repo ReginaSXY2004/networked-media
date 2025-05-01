@@ -123,6 +123,24 @@ body {
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
 
+.swap-result, .keep-result {
+    position: absolute;
+    bottom: 100px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    padding: 15px;
+  }
+  
+  .swap-result {
+    border-left: 3px solid #c94d4d;
+  }
+  
+  .keep-result {
+    border-left: 3px solid #ffffff;
+  }
+
 /* toggle button on the right */
 .toggle-btn {
     position: fixed;

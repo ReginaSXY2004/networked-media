@@ -1,1 +1,0 @@
-{"username":"sxy1381@gmail.com","fullname":"sxy1381@gmail.com","password":"$2b$10$oCE80dKc5JA7FB0LN27Z.uKAvo/lUZsl1OpY5.1FIPAwo9u6J7C/u","birthInfo":{"date":"02/22/2004","time":"21:45","place":"Nanjing"},"lastDrawTime":null,"currentFortuneId":null,"swapsRemaining":1,"createdAt":{"$$date":1745782889112},"_id":"S8TWecalT9BM8Be9"}

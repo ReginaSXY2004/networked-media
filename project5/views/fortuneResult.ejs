@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shrine Fortunes — Fortune Result</title>
+    <link rel="stylesheet" href="/css/fortune-result.css">
+    <script src="/js/omen-toggle.js"></script>
+    <audio id="fortune-sound" src="/Sound/bell.mp3" preload="auto"></audio>
+</head>
+<body>
+    <!-- toggle button for omen menu -->
+    <div class="toggle-btn">
+        <div class="toggle-inner"></div>
+    </div>
+    
+    <div class="omen-menu">
+        <h2>All Omen Influences</h2>
+        <div class="omen-list">
+            <!-- for all omens, current omen will be marked -->
+            <% for (let omenItem of [
+                {name: 'Putrid Winds', description: 'A decaying wind surrounds the shrine, bringing ominous premonitions.', effect: 'Unfortunate fortunes become more intense.'},
+                {name: 'Night of Ghost Drums', description: 'Mysterious drum sounds echo through the night, their source unknown to all.', effect: 'Every fortune—be it blessing or curse—is rendered more profound.'},
+                {name: 'White Deer Apparition', description: 'A mystical white deer has appeared near the shrine, regarded as a messenger of the divine.', effect: 'Good fortune becomes more pronounced'},
+                {name: 'Ashen Eclipse', description: 'The moon is veiled by a gray shadow, as if covered in ash.', effect: 'The meanings of all fortunes become more ambiguous.'},
+                {name: 'Crimson Moonlight', description: 'An unnatural blood-red moonlight bathes every corner of the shrine.', effect: 'All inauspicious fortunes become more potent.'}
+            ]) { %>
+                <% if (omen.name === omenItem.name) { %>
+                    <div class="omen-item current">
+                <% } else { %>
+                    <div class="omen-item">
+                <% } %>
+                    <div class="omen-name"><%= omenItem.name %></div>
+                    <div class="omen-details">
+                        <p class="omen-description"><%= omenItem.description %></p>
+                        <p class="omen-effect"><strong>Effect:</strong> <%= omenItem.effect %></p>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    </div>
+
+
+
+    <div class="content-container">
+        <!-- current omen on the top -->
+        <div class="omen-header">
+            Today's Omen: <%= omen.name %> -- <%= omen.description %>
+        </div>
+        <div class="header-banner"></div>
+
+        <!-- Log out -->
+<div class="logout-link">
+    <a href="/logout">[ Log Out ]</a>
+</div>
+
+        <!-- user info -->
+        <div class="user-info">
+            <h2>You are: Seeker No. <%= fortune.seekerNumber %></h2>
+
+        </div>
+
+        <!-- Fortune content -->
+        <div class="fortune-container">
+            <h3>Your Fortune</h3>
+            
+            <h2 class="fortune-type">
+                <%= fortune.type %>
+            </h2>
+            
+            <div class="fortune-content">
+                <%= fortune.content %>
+            </div>
+
+            <!-- Description -->
+            <div class="fortune-interpretation">
+                <%= fortune.interpretation %>
+            </div>
+        </div>
+
+
+<% if (!(typeof swapSuccess !== 'undefined' && swapSuccess) && !(typeof keepMine !== 'undefined' && keepMine) && user.swapsRemaining > 0) { %>
+    <!-- Swapping options -->
+    <div class="swap-options">
+        <p>Would you like to secretly swap fortunes with another Seeker?</p>
+        <p>They won't know it happened.</p>
+        
+        <div class="swap-buttons">
+            <form action="/swap-fortune" method="POST">
+                <input type="hidden" name="fortuneId" value="<%= fortune._id %>">
+                <button type="submit" class="swap-btn">[ Swap Fortunes ]</button>
+            </form>
+            <a href="/fortune-result/<%= fortune._id %>?keep=true" class="keep-btn">[ Keep Mine ]</a>
+        </div>
+    </div>
+<% } %>
+
+<!-- Show swapping/keeping result -->
+<% if (typeof swapSuccess !== 'undefined' && swapSuccess) { %>
+    <div class="swap-result">
+        <p>You have successfully swapped fortunes with Seeker No. <%= swapPartner %>.</p>
+        <p>They have no idea this happened.</p>
+    </div>
+<% } %>
+<% if (typeof keepMine !== 'undefined' && keepMine) { %>
+    <div class="keep-result">
+      <p>You have chosen to keep your fortune.</p>
+      <p>You will bear your own destiny.</p>
+    </div>
+  <% } %>
+</body>
+</html>
