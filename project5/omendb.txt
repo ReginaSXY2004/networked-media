@@ -1,0 +1,2 @@
+{"name":"Crimson Moonlight","description":"An unnatural blood-red moonlight bathes every corner of the shrine.","effect":"All inauspicious fortunes become more potent.","createdAt":{"$$date":1746158400818},"_id":"zhiecG8zvES3QlWp"}
+{"name":"Crimson Moonlight","description":"An unnatural blood-red moonlight bathes every corner of the shrine.","effect":"All inauspicious fortunes become more potent.","createdAt":{"$$date":1746562711207},"_id":"ieXKSZ7PGBV6rKLn"}

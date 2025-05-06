@@ -186,6 +186,23 @@ body {
     z-index: 99;
     transition: right 0.3s ease;
     padding: 30px;
+    
+
+    background-image: url('/images/menuBG.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.omen-menu::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: -1;
 }
 
 .omen-menu.show {
@@ -222,7 +239,7 @@ body {
     display: none;
     padding: 10px;
     margin-top: 5px;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(0, 0, 0, 0.7);
     font-size: 0.9em;
     border-left: 2px solid rgba(255, 255, 255, 0.3);
 }

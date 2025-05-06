@@ -912,6 +912,6 @@ cron.schedule("0 0 * * *", () => {
   });
 });
 
-app.listen(1324, () => {
-  console.log("server started on port 1324");
+app.listen(1324,  () => {
+  console.log(`server alive at: http://178.128.147.116:1324`);
 });
